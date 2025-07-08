@@ -22,17 +22,19 @@ void print_forward(Node* &head){
     }
      cout << endl;
 }
-void insert_at_head(Node* &head,Node* &tail,int val){
+void insert_at_any_pos(Node* &head,int idx,int val){
     Node* newNode = new Node(val);
-      if(head == NULL){
-        head = newNode;
-        tail = newNode;
-        return;
+    Node* temp = head;
+    for(int i=1;i>idx;i++){
+        temp = temp->next;
     }
-    newNode->next = head;
-    head->prev = newNode;
-    head = newNode;
+    newNode->next = temp->next;
+    temp->next->prev = newNode;
+    temp->next = newNode;
+    newNode->prev = temp;
 
+
+    
 }
 int main(){
     Node* head = new Node(100);
@@ -44,9 +46,9 @@ int main(){
     a->prev = head;
     a->next = b;
     b->prev = a;
-    b->next = tail;
+    b->next = tail;            
     tail->prev = b;
-    insert_at_head(head,tail,800);
+    insert_at_any_pos(head,2,800);
     print_forward(head);
 
     return 0;
