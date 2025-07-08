@@ -25,6 +25,11 @@ void print_forward(Node* &head){
 void delete_at_head(Node* &head,Node* &tail){
     Node* deleteNode = head;
     head = head->next;
+    delete deleteNode;
+    if(head == NULL){
+        tail = NULL;
+        return;
+    }
     head->prev = NULL;
 
 } 
